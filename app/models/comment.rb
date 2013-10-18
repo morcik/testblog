@@ -9,4 +9,5 @@ class Comment
   
   belongs_to :user
   belongs_to :post
+  has_many :votes, :dependent => :destroy
 end

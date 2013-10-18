@@ -12,7 +12,7 @@ class User
   validates_presence_of :encrypted_password
 
   has_many :posts, :dependent => :destroy
-  
+  has_many :votes, :dependent => :destroy
 
   ## Recoverable
   field :reset_password_token,   type: String

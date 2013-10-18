@@ -13,9 +13,15 @@
     %ul 
     - comments.each do |comment|
       %li.comment--short-size
-        .comment__body
-        = comment.body
-        
+        .comment__body     
+          = comment.body
+        .comment__voting
+          = Vote
+          =link_to "Up", vote_up_post_comment_path(post, comment), :method => :post
+          ="#{comment.votes.up.count}"
+          = "/"
+          =link_to "Down", vote_down_post_comment_path(post, comment), :method => :post
+          ="#{comment.votes.down.count}"
           
         
   .post__tags-list.tagsinput
