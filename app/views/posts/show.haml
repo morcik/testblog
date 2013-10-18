@@ -7,6 +7,17 @@
 
   .post__body
     = post.body
+  .post__comments
+    Comments  
+    = link_to "add comment", new_post_comment_path(post), class: 'post__button--comment'
+    %ul 
+    - comments.each do |comment|
+      %li.comment--short-size
+        .comment__body
+        = comment.body
+        
+          
+        
   .post__tags-list.tagsinput
     - post.tags_array.each do |tag|
       = content_tag :span, tag, class: 'tag'

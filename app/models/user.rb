@@ -11,7 +11,8 @@ class User
   validates_presence_of :email
   validates_presence_of :encrypted_password
 
-  has_many :posts
+  has_many :posts, :dependent => :destroy
+  
 
   ## Recoverable
   field :reset_password_token,   type: String

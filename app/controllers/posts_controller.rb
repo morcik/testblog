@@ -2,12 +2,14 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   expose_decorated(:posts)
   expose_decorated(:post)
+  expose_decorated(:comments)
   expose(:tag_cloud) { [] }
 
   def index
   end
 
   def new
+    post.user = current_user
   end
 
   def edit
@@ -25,7 +27,9 @@ class PostsController < ApplicationController
     post.destroy if current_user.owner? post
     render action: :index
   end
-
+  def comments
+    post.comments
+  end
   def show
   end
 
@@ -35,6 +39,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    post.user = current_user
     if post.save
       redirect_to action: :index
     else

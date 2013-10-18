@@ -1,0 +1,7 @@
+%h1="Edit comment for  \"#{post.title}\""
+
+= render 'form'
+
+= link_to 'Show', [post, comment]
+\|
+= link_to 'Back', post_path(post)
