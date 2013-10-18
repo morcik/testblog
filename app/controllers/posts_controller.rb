@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 
   def update
     if post.save
-      render action: :index
+      render action: :show
     else
       render :new
     end
