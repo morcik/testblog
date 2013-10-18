@@ -28,7 +28,8 @@ class PostsController < ApplicationController
     render action: :index
   end
   def comments
-    post.comments
+      post.comments
+
   end
   def show
   end

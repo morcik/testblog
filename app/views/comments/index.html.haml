@@ -6,13 +6,14 @@
     %th 
     %th
     %th
-
+    %th
   - comments.each do |comment|
     %tr
       %td= comment.body
       %td= link_to 'Show', [post, comment]
       %td= link_to 'Edit', edit_polymorphic_path([post, comment])
       %td= link_to 'Destroy', [post, comment], :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= comment.abusive?
 
 %br
 

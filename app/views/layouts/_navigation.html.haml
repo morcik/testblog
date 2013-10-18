@@ -7,6 +7,8 @@
         = link_to 'Posts', posts_path
       %li{class: is?("devise/registrations")}
         = link_to 'Edit account', edit_user_registration_path
+      %li
+        = link_to current_user.to_s, user_path(current_user)
       %li.logout-button
         = link_to 'Logout', destroy_user_session_path, method: 'delete', class: 'pull-right'
     - else

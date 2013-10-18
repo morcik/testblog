@@ -6,7 +6,7 @@ class PostDecorator < Draper::Decorator
     title.gsub(' ', '-').downcase
   end
   def friendly_date
-    created_at.strftime("%d/%m/%Y : %I:%M")
+    created_at.strftime("%d/%m/%Y : %H:%M")
   end
 
   def truncated_body

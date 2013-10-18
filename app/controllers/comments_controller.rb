@@ -53,6 +53,9 @@ class CommentsController < ApplicationController
     comment.votes.down.create(user: current_user)
     redirect_to post_path(post)
   end
-
+  def mark_as_not_abusive
+    comment.mark_as_not_abusive!
+    redirect_to post_path(post)
+  end
 
 end

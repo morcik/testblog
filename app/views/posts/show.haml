@@ -2,26 +2,33 @@
   %h2
     = post.title
     %small
+      posted by
+      = post.user.to_s
       = post.friendly_date
-  = link_to "edit", edit_post_path(post), class: 'post__button--edit'
-
+  -if current_user.owner? post
+    = link_to "edit", edit_post_path(post), class: 'post__button--edit'
+    = link_to "delete", post_path(post), method: :delete, class: 'post__button--edit'
   .post__body
     = post.body
   .post__comments
     Comments  
     = link_to "add comment", new_post_comment_path(post), class: 'post__button--comment'
     %ul 
-    - comments.each do |comment|
-      %li.comment--short-size
-        .comment__body     
-          = comment.body
-        .comment__voting
-          = Vote
-          =link_to "Up", vote_up_post_comment_path(post, comment), :method => :post
-          ="#{comment.votes.up.count}"
-          = "/"
-          =link_to "Down", vote_down_post_comment_path(post, comment), :method => :post
-          ="#{comment.votes.down.count}"
+      - comments.each do |comment|
+        - if !comment.abusive? or comment.user == current_user
+          %li.comment--short-size
+            .comment__body   
+              = comment.body
+            .comment__voting
+              - if comment.abusive? && post.user == current_user 
+                = "Reported as abusive. "
+                =link_to "Mark as not abusive", mark_as_not_abusive_post_comment_path(post, comment), :method => :post        
+              =Vote
+              ="#{comment.votes.up.count-comment.votes.down.count}"
+              =link_to "Up", vote_up_post_comment_path(post, comment), :method => :post
+              = "/"
+              =link_to "Down", vote_down_post_comment_path(post, comment), :method => :post
+            
           
         
   .post__tags-list.tagsinput
