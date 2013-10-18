@@ -1,0 +1,16 @@
+.comment__button--add, .comment__button--edit, .comment__button--comment, .comment__button--delete , .comment__button--show, .comment__button--back{
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-small;
+  font-size: 12px; 
+}
+.comment__button--delete {
+  @extend .btn-danger
+}
+.comment--short-size {
+  border: 1px solid #f2f2f2; }
+
+.comment--short-size {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}

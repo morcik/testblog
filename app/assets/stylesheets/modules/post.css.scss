@@ -8,14 +8,15 @@
   }
 }
 
-.post__button--add, .post__button--edit {
+.post__button--add, .post__button--edit, .post__button--comment, .post__button--delete {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-small;
+  font-size: 12px; 
 }
-
-.post__button--edit {
-  font-size: 12px; }
+.post__button--delete {
+  @extend .btn-danger
+}
 
 .post--short-size {
   border-bottom: 1px solid #f2f2f2; }
@@ -26,7 +27,7 @@
 }
 
 .post--full-size {
-  .post__body {
+  .post__body,.post__comments {
     margin: 15px 0;
   }
 }
