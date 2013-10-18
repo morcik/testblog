@@ -15,19 +15,18 @@
     = link_to "add comment", new_post_comment_path(post), class: 'post__button--comment'
     %ul 
       - comments.each do |comment|
-        - if !comment.abusive? or comment.user == current_user
-          %li.comment--short-size
-            .comment__body   
-              = comment.body
-            .comment__voting
-              - if comment.abusive? && post.user == current_user 
-                = "Reported as abusive. "
-                =link_to "Mark as not abusive", mark_as_not_abusive_post_comment_path(post, comment), :method => :post        
-              =Vote
-              ="#{comment.votes.up.count-comment.votes.down.count}"
-              =link_to "Up", vote_up_post_comment_path(post, comment), :method => :post
-              = "/"
-              =link_to "Down", vote_down_post_comment_path(post, comment), :method => :post
+        %li.comment--short-size
+          .comment__body  
+            = comment.body
+          .comment__voting
+            - if comment.abusive? && post.user == current_user
+              = "Reported as abusive. "
+              =link_to "Mark as not abusive", mark_as_not_abusive_post_comment_path(post, comment), :method => :post        
+            =Vote
+            ="#{comment.votes.up.count-comment.votes.down.count}"
+            =link_to "Up", vote_up_post_comment_path(post, comment), :method => :post
+            = "/"
+            =link_to "Down", vote_down_post_comment_path(post, comment), :method => :post
             
           
         

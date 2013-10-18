@@ -1,6 +1,7 @@
 class Vote
   include Mongoid::Document
   before_save :allow_voting?
+  after_save :mark_abusive_comment
   field :value, type: Integer, default: 0
 
   belongs_to :user

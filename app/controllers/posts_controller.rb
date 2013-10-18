@@ -28,8 +28,11 @@ class PostsController < ApplicationController
     render action: :index
   end
   def comments
+    if current_user.owner?(post)
       post.comments
-
+    else
+      post.comments.not_abusives
+    end
   end
   def show
   end

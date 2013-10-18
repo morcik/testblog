@@ -13,7 +13,7 @@ Easyblog::Application.routes.draw do
       member do
         post :vote_up
         post :vote_down
-        
+        post :mark_as_not_abusive
       end
     end
   end
